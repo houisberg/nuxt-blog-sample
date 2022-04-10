@@ -1,3 +1,5 @@
+const { createClient } = require('./plugins/contentful')
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -30,6 +32,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/composition-api/module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -51,4 +54,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  privateRuntimeConfig: {
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    postType: process.env.CONTENTFUL_POST_TYPE,
+  },
 }
